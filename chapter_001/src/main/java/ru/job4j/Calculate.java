@@ -1,4 +1,4 @@
-package ru.job4j.calculate;
+package ru.job4j;
 
 /**
 * Class Calculate Решение задачи 1.3 JavaDoc. Code convention
@@ -14,4 +14,13 @@ public class Calculate {
     public static void main(String[] args) {
         System.out.println("HelloWorld");
     }
+	
+/**
+* Method echo.
+* @param name Mikhail Kochin.
+* @return Echo plus your name.
+*/
+	public String echo(String name) {
+    return "Echo, echo, echo : " + name;
+	}
 }
