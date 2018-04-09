@@ -42,4 +42,34 @@ public class MaxTest {
         int result = maxim.max(3, 3);
         assertThat(result, is(3));
     }
+
+    /**
+     * 3 number >
+     */
+    @Test
+    public void whenThirdMore() {
+        Max maxim = new Max();
+        int result = maxim.max(1, 3, 6);
+        assertThat(result, is(6));
+    }
+
+    /**
+     * first=second and > third
+     */
+    @Test
+    public void whenThirdLess() {
+        Max maxim = new Max();
+        int result = maxim.max(5, 5, 1);
+        assertThat(result, is(5));
+    }
+
+    /**
+     * first=second=third
+     */
+    @Test
+    public void whenNumbersEqually() {
+        Max maxim = new Max();
+        int result = maxim.max(5, 5, 5);
+        assertThat(result, is(5));
+    }
 }
