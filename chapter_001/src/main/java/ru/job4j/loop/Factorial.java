@@ -16,10 +16,8 @@ public class Factorial {
      */
     public int calculateFactorial(int finish) {
         int result = 1;
-        if (finish >= 0) {
-            for (int i = finish; i >= 1; i--) {
-                result *= i;
-            }
+        for (int i = finish; i >= 1; i--) {
+            result *= i;
         }
         return result;
     }
