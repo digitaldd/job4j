@@ -21,6 +21,13 @@ public class ArrayChar {
      * @return если слово начинаеться с префикса
      */
     public boolean startWith(String prefix) {
-        return (String.valueOf(data).startsWith(String.valueOf(prefix)));
+        char[] value = prefix.toCharArray();
+        int count = 0;
+        for (int i = 0; i < prefix.length(); i++) {
+            if (data[i] == value[i]) {
+                count++;
+            }
+        }
+        return count == prefix.length();
     }
 }
