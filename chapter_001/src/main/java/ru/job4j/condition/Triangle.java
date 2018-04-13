@@ -52,7 +52,6 @@ public class Triangle {
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
         if (this.exist(ab, ac, bc)) {
-            // написать формулу для расчета площади треугольника.
             double half = period(ab, ac, bc);
             rsl = Math.sqrt(half * (half - ab) * (half - ac) * (half - bc));
         }

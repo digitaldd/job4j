@@ -20,7 +20,6 @@ public class FactorialTest {
     public void whenCalculateFactorialForFiveThenOneHundreedTwenty() {
         Factorial fact = new Factorial();
         assertThat(fact.calculateFactorial(5), is(120));
-        //напишите здесь тест, проверяющий, что факториал для числа 5 равен 120.
     }
 
     /**
@@ -30,6 +29,5 @@ public class FactorialTest {
     public void whenCalculateFactorialForZeroThenOne() {
         Factorial fact = new Factorial();
         assertThat(fact.calculateFactorial(0), is(1));
-        //напишите здесь тест, проверяющий, что факториал для числа 0 равен 1.
     }
 }
