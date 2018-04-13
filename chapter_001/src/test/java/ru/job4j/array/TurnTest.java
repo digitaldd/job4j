@@ -36,4 +36,28 @@ public class TurnTest {
         int[] expect = new int[]{5, 4, 3, 2, 1};
         assertThat(result, is(expect));
     }
+
+    /**
+     * random numbers even amount
+     */
+    @Test
+    public void whenTurnArrayRandomNumbersEven() {
+        Turn turn = new Turn();
+        int[] date = {4, 1, 6, 2};
+        int[] resultArray = turn.back(date);
+        int[] expectArray = {2, 6, 1, 4};
+        assertThat(resultArray, is(expectArray));
+    }
+
+    /**
+     * random numbers odd amount
+     */
+    @Test
+    public void whenTurnArrayRandomNumbersOdd() {
+        Turn turn = new Turn();
+        int[] date = {12, 54, 22, 55, 23, 75, 32};
+        int[] resultArray = turn.back(date);
+        int[] expectArray = {32, 75, 23, 55, 22, 54, 12};
+        assertThat(resultArray, is(expectArray));
+    }
 }
