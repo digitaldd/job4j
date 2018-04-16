@@ -1,5 +1,5 @@
 public class Profession {
-    public String name;
+    private String name;
     public String profession;
 
     public Profession() {
