@@ -18,10 +18,6 @@ public class Tracker {
     private int position = 0;
     private String[] all;
 
-    public static void main(String[] args) {
-
-    }
-
     /**
      * Метод реализаущий добавление заявки в хранилище
      *
