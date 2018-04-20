@@ -112,7 +112,11 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please, enter the task's id");
             Item item = tracker.findById(id);
-            System.out.println(String.format("%s, %s, %s", item.getId(), item.getName(), item.getDesc()));
+            if (item != null) {
+                System.out.println(String.format("%s, %s, %s", item.getId(), item.getName(), item.getDesc()));
+            } else {
+                System.out.println("Not found");
+            }
         }
 
         public String info() {
@@ -127,7 +131,12 @@ public class MenuTracker {
 
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Please, enter the task's name");
-            tracker.findByName(name);
+            Item item = tracker.findByName(name);
+            if (item != null) {
+                System.out.println(String.format("%s, %s, %s", item.getId(), item.getName(), item.getDesc()));
+            } else {
+                System.out.println("Not found");
+            }
         }
 
         public String info() {

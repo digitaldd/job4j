@@ -45,7 +45,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
-        Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
+        Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("test name"));
     }
@@ -57,7 +57,7 @@ public class StartUITest {
     public void whenUpdateThenTrackerHasUpdatedValue() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
-        Input input = new StubInput(new String[]{"1", item.getId(), "test name", "desc", "6"});
+        Input input = new StubInput(new String[]{"1", "y"});
         new StartUI(input, tracker).init();
         assertThat(new String(this.out.toByteArray()).contains(item.getId()), is(true));
     }
@@ -69,7 +69,7 @@ public class StartUITest {
     public void whenEditNameThenTrackerContainsNewName() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
-        Input input = new StubInput(new String[]{"2", item.getId(), "1", "test1", "6"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "test1", "desc", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getName(), is("test1"));
     }
@@ -81,7 +81,7 @@ public class StartUITest {
     public void whenEditDescThenTrackerContainsNewDesc() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
-        Input input = new StubInput(new String[]{"2", item.getId(), "2", "desc2", "6"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "test name", "desc2", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getDesc(), is("desc2"));
     }
@@ -93,7 +93,7 @@ public class StartUITest {
     public void whenDeleteItemThenTrackerNotContainsItem() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
-        Input input = new StubInput(new String[]{"3", item.getId(), "6"});
+        Input input = new StubInput(new String[]{"3", item.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()) == null, is(true));
     }
@@ -105,7 +105,7 @@ public class StartUITest {
     public void whenFindByIdThenTrackerReturnItemWithId() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
-        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
+        Input input = new StubInput(new String[]{"4", item.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(new String(this.out.toByteArray()).contains("desc"), is(true));
     }
@@ -117,7 +117,7 @@ public class StartUITest {
     public void whenFindByNameThenTrackerReturnItemWithName() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
-        Input input = new StubInput(new String[]{"5", item.getName(), "6"});
+        Input input = new StubInput(new String[]{"5", item.getName(), "y"});
         new StartUI(input, tracker).init();
         assertThat(new String(this.out.toByteArray()).contains("test name"), is(true));
     }
