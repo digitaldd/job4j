@@ -30,6 +30,21 @@ public class Tracker {
     }
 
     /**
+     * edit item
+     *
+     * @param fresh new item
+     */
+    public void edit(Item fresh) {
+        for (int i = 0; i != items.length; i++) {
+            Item item = items[i];
+            if (item != null && item.getId().equals(fresh.getId())) {
+                items[i] = fresh;
+                break;
+            }
+        }
+    }
+
+    /**
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
      *
