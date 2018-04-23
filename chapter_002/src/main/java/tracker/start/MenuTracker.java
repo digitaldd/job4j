@@ -36,6 +36,14 @@ public class MenuTracker {
         }
     }
 
+    public int[] actionsArray() {
+        int[] array = new int[actions.length];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i;
+        }
+        return array;
+    }
+
     private static class ShowItems implements UserAction {
         public int key() {
             return 1;
@@ -75,13 +83,17 @@ public class MenuTracker {
 
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please, enter the task's id");
-            String name = input.ask("Please, enter the tasks's name:");
-            String desc = input.ask("Please, enter the tasks's description:");
-            Item item = new Item();
-            item.setId(id);
-            item.setName(name);
-            item.setDesc(desc);
-            tracker.edit(item);
+            if (tracker.findById(id) != null) {
+                String name = input.ask("Please, enter the tasks's name:");
+                String desc = input.ask("Please, enter the tasks's description:");
+                Item item = new Item();
+                item.setId(id);
+                item.setName(name);
+                item.setDesc(desc);
+                tracker.edit(item);
+            } else {
+                System.out.println("Incorrect ID");
+            }
         }
 
         public String info() {
@@ -96,7 +108,11 @@ public class MenuTracker {
 
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please, enter the task's id");
-            tracker.delete(id);
+            if (tracker.findById(id) != null) {
+                tracker.delete(id);
+            } else {
+                System.out.println("Not found");
+            }
         }
 
         public String info() {

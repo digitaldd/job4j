@@ -11,7 +11,6 @@ public class StartUI {
      * Получение данных от пользователя.
      */
     private final Input input;
-
     /**
      * Хранилище заявок.
      */
@@ -34,7 +33,7 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 
     /**
@@ -45,8 +44,7 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            int key = Integer.valueOf(input.ask("select:"));
-            menu.select(key);
+            menu.select(input.ask("select:", menu.actionsArray()));
         } while (!"y".equals(this.input.ask("Exit? (y)")));
     }
 }
