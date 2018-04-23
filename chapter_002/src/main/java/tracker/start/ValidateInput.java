@@ -6,7 +6,7 @@ package tracker.start;
  * @author Mikhail Kochin (digital-dd@mail.ru)
  * @since 23.04.2018
  */
-public class ValidateInput implements Input {
+public class ValidateInput extends ConsoleInput {
 
     private final Input input;
 
@@ -24,7 +24,7 @@ public class ValidateInput implements Input {
         int value = -1;
         do {
             try {
-                value = this.input.ask(question, range);
+                value = super.ask(question, range);
                 invalid = false;
             } catch (MenuOutException moe) {
                 System.out.println("Please select key from menu.");

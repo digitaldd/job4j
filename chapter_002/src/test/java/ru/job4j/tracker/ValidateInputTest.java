@@ -42,4 +42,11 @@ public class ValidateInputTest {
         input.ask("Enter", new int[]{1});
         assertThat(this.mem.toString(), is(String.format("Please enter validate data again.%n")));
     }
+
+    @Test
+    public void whenNineInput() {
+        ValidateInput input = new ValidateInput(new StubInput(new String[]{"9", "1"}));
+        input.ask("select:", new int[]{1});
+        assertThat(this.mem.toString(), is(String.format("Please select key from menu.%n")));
+    }
 }
