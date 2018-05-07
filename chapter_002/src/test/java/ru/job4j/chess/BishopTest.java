@@ -44,4 +44,32 @@ public class BishopTest {
         Cell[] cell = {c1, c2};
         assertThat(Arrays.toString(bishop.way(c, c2)).equals(Arrays.toString(cell)), is(true));
     }
+
+    /**
+     * test build and return array with correct reverse way
+     *
+     * @throws ImpossibleMoveException - msg Error
+     */
+    @Test
+    public void whenFigureReverseWayCorrectThenReturnArrayWithWay() throws ImpossibleMoveException {
+        Cell c = new Cell(4, 4);
+        Cell c1 = new Cell(3, 3);
+        Cell c2 = new Cell(2, 2);
+        Bishop bishop = new Bishop(c);
+        Cell[] cell = {c1, c2};
+        assertThat(Arrays.toString(bishop.way(c, c2)).equals(Arrays.toString(cell)), is(true));
+    }
+
+    /**
+     * incorrect reverse way of the figure = exception
+     *
+     * @throws ImpossibleMoveException - msg Error
+     */
+    @Test(expected = ImpossibleMoveException.class)
+    public void whenFigureReverseWayIncorrectThenException() throws ImpossibleMoveException {
+        Cell c = new Cell(4, 4);
+        Cell c2 = new Cell(1, 2);
+        Bishop bishop = new Bishop(c);
+        bishop.way(c, c2);
+    }
 }
