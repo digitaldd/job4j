@@ -4,6 +4,8 @@ import org.junit.Test;
 import tracker.Item;
 import tracker.Tracker;
 
+import java.util.Arrays;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -22,7 +24,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.getAll()[0], is(item));
+        assertThat(tracker.getAll().get(0), is(item));
     }
 
     /**
@@ -36,7 +38,7 @@ public class TrackerTest {
         Item next = new Item("test2", "testDescription2", 1234L);
         next.setId(previous.getId());
         tracker.replace(previous.getId(), next);
-        assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
+        assertThat(tracker.getAll().get(0).getName(), is("test2"));
     }
 
     /**
@@ -52,9 +54,9 @@ public class TrackerTest {
         Item third = new Item("test3", "testDescription3", 12345L);
         tracker.add(third);
         tracker.delete(second.getId());
-        assertThat(tracker.findAll().length, is(2));
-        assertThat(tracker.findAll()[0], is(first));
-        assertThat(tracker.findAll()[1], is(third));
+        assertThat(tracker.findAll().size(), is(2));
+        assertThat(tracker.findAll().get(0), is(first));
+        assertThat(tracker.findAll().get(1), is(third));
     }
 
     /**
@@ -97,9 +99,8 @@ public class TrackerTest {
         tracker.add(second);
         Item[] check = {first, second};
         Item[] check2 = {first};
-        assertThat(tracker.findAll(), is(check));
+        assertThat(tracker.findAll().toString().equals(Arrays.toString(check)), is(true));
         tracker.delete(second.getId());
-        assertThat(tracker.findAll(), is(check2));
-
+        assertThat(tracker.findAll().toString().equals(Arrays.toString(check2)), is(true));
     }
 }

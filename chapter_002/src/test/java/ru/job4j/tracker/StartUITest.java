@@ -44,10 +44,10 @@ public class StartUITest {
      */
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Tracker tracker = new Tracker();     // создаём Tracker
+        Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.getAll()[0].getName(), is("test name"));
+        assertThat(tracker.getAll().get(0).getName(), is("test name"));
     }
 
     /**

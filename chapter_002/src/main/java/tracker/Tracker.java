@@ -1,22 +1,16 @@
 package tracker;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-/**
- * @version $Id$
- * @since 0.1
- */
 public class Tracker {
     private static final Random RN = new Random();
     /**
      * Массив для хранение заявок.
      */
-    private final Item[] items = new Item[100];
-    /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
-    private String[] all;
+    //private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>();
 
     /**
      * Метод реализаущий добавление заявки в хранилище
@@ -25,7 +19,8 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        this.items.add(item);
+
         return item;
     }
 
@@ -35,10 +30,10 @@ public class Tracker {
      * @param fresh new item
      */
     public void edit(Item fresh) {
-        for (int i = 0; i != items.length; i++) {
-            Item item = items[i];
+        for (Item item : items) {
             if (item != null && item.getId().equals(fresh.getId())) {
-                items[i] = fresh;
+                item.setName(fresh.getName());
+                item.setDesc(fresh.getDesc());
                 break;
             }
         }
@@ -59,12 +54,8 @@ public class Tracker {
      *
      * @return items copy
      */
-    public Item[] getAll() {
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+    public List<Item> getAll() {
+        return items;
     }
 
     /**
@@ -74,14 +65,13 @@ public class Tracker {
      * @param item new object
      */
     public void replace(String id, Item item) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                items[i] = item;
+        for (Item item1 : items) {
+            if (item1 != null && item1.getId().equals(id)) {
+                item1.setDesc(item.getDesc());
+                item1.setName(item.getName());
                 break;
             }
-
         }
-
     }
 
     /**
@@ -90,16 +80,12 @@ public class Tracker {
      * @param id of the element for delete with offset
      */
     public void delete(String id) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getId().equals(id)) {
-                this.position--;
-                System.arraycopy(this.items, i + 1, this.items, i, items.length - 1 - i);
-                this.items[items.length - 1] = null;
+        for (Item item : items) {
+            if (item != null && item.getId().equals(id)) {
+                items.remove(item);
                 break;
             }
-
         }
-
     }
 
     /**
@@ -107,12 +93,14 @@ public class Tracker {
      *
      * @return new array without null
      */
-    public Item[] findAll() {
-        Item[] result = new Item[this.position];
-        for (int i = 0; i != this.position; i++) {
-            result[i] = this.items[i];
+    public List<Item> findAll() {
+        List<Item> li = new ArrayList<>();
+        for (Item item : items) {
+            if (item != null) {
+                li.add(item);
+            }
         }
-        return result;
+        return li;
     }
 
     /**

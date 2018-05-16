@@ -2,24 +2,26 @@ package tracker.start;
 
 import tracker.Tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[8];
-    private int position = 0;
+    private List<UserAction> actions = new ArrayList<>();
 
-    public MenuTracker(Input input, Tracker tracker) {
+    MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
     public void addAction(UserAction action) {
-        this.actions[position++] = action;
+        this.actions.add(action);
     }
 
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
     }
 
     public void show() {
@@ -31,7 +33,7 @@ public class MenuTracker {
     }
 
     public int[] actionsArray() {
-        int[] array = new int[actions.length];
+        int[] array = new int[actions.size()];
         for (int i = 0; i < array.length; i++) {
             array[i] = i;
         }
