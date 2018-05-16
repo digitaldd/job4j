@@ -35,4 +35,52 @@ public class SortUserTest {
         check.add(user);
         assertThat(su.containsAll(check), is(true));
     }
+
+    /**
+     * test sort by name
+     */
+    @Test
+    public void whenSortByNameThenSortAndReturnSortedList() {
+        User user = new User("Sergey", 25);
+        User user1 = new User("Ivan", 30);
+        User user2 = new User("Sergey", 20);
+        User user3 = new User("Ivan", 25);
+        List<User> list = new ArrayList<>();
+        list.add(user);
+        list.add(user1);
+        list.add(user2);
+        list.add(user3);
+        SortUser sortUser = new SortUser();
+        List<User> su = sortUser.sortNameLength(list);
+        List<User> check = new ArrayList<>();
+        check.add(user1);
+        check.add(user3);
+        check.add(user);
+        check.add(user2);
+        assertThat(su, is(check));
+    }
+
+    /**
+     * test sort by name and age
+     */
+    @Test
+    public void whenSortByNameAndAgeThenSortAndReturnSortedList() {
+        User user = new User("Sergey", 25);
+        User user1 = new User("Ivan", 30);
+        User user2 = new User("Sergey", 20);
+        User user3 = new User("Ivan", 25);
+        List<User> list = new ArrayList<>();
+        list.add(user);
+        list.add(user1);
+        list.add(user2);
+        list.add(user3);
+        SortUser sortUser = new SortUser();
+        List<User> su = sortUser.sortByAllFields(list);
+        List<User> check = new ArrayList<>();
+        check.add(user3);
+        check.add(user1);
+        check.add(user2);
+        check.add(user);
+        assertThat(su, is(check));
+    }
 }
