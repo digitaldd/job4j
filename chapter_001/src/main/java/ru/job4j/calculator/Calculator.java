@@ -13,7 +13,7 @@ public class Calculator {
     /**
      * number+number
      *
-     * @param first any number
+     * @param first  any number
      * @param second any number
      */
     public void add(double first, double second) {
@@ -23,7 +23,7 @@ public class Calculator {
     /**
      * number-number
      *
-     * @param first any number
+     * @param first  any number
      * @param second any number
      */
     public void subtract(double first, double second) {
@@ -33,7 +33,7 @@ public class Calculator {
     /**
      * number/number
      *
-     * @param first any number
+     * @param first  any number
      * @param second any number
      */
     public void division(double first, double second) {
@@ -43,7 +43,7 @@ public class Calculator {
     /**
      * number*number
      *
-     * @param first any number
+     * @param first  any number
      * @param second any number
      */
     public void multiple(double first, double second) {
