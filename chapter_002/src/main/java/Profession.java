@@ -1,6 +1,6 @@
 public class Profession {
-    private String name;
     public String profession;
+    private String name;
 
     public Profession() {
     }

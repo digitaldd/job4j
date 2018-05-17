@@ -24,7 +24,7 @@ public class Bishop extends Figure {
 
     /**
      * @param source from
-     * @param dest in
+     * @param dest   in
      * @return array with way (cells)
      */
     private Cell[] calculateWay(Cell source, Cell dest) {
@@ -32,8 +32,8 @@ public class Bishop extends Figure {
         int countX = source.getX();
         int countY = source.getY();
         for (int i = 0; i != cells.length; i++) {
-            countX=dest.getX()>countX?countX+1:countX-1;
-            countY=dest.getY()>countY?countY+1:countY-1;
+            countX = dest.getX() > countX ? countX + 1 : countX - 1;
+            countY = dest.getY() > countY ? countY + 1 : countY - 1;
             cells[i] = new Cell(countX, countY);
         }
         return cells;

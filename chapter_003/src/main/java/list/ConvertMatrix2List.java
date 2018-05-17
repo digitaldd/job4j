@@ -23,7 +23,7 @@ public class ConvertMatrix2List {
 
     public List<Integer> convert(List<int[]> list) {
         List<Integer> newListInteger = new ArrayList<>();
-            for (int[] i : list) {
+        for (int[] i : list) {
             for (int j : i) {
                 newListInteger.add(j);
             }

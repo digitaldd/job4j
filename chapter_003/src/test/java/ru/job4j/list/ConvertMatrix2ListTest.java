@@ -87,6 +87,7 @@ public class ConvertMatrix2ListTest {
         );
         assertThat(result, is(expect));
     }
+
     /**
      * test convert list with arrays to list Integer (4 arrays and 10 elements)
      */
