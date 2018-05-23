@@ -11,6 +11,12 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Class ListCompare Решение задачи Банковские переводы
+ *
+ * @author Mikhail Kochin (digital-dd@mail.ru)
+ * @since 23.05.2018
+ */
 public class AccountManagementTest {
     /**
      * test add user

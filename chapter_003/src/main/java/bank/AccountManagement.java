@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Class ListCompare Решение задачи Банковские переводы
+ *
+ * @author Mikhail Kochin (digital-dd@mail.ru)
+ * @since 23.05.2018
+ */
 public class AccountManagement {
     private HashMap<User, List<Account>> account = new HashMap<>();
 

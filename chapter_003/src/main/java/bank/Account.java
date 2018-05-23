@@ -3,16 +3,17 @@ package bank;
 import java.util.List;
 import java.util.TreeMap;
 
+/**
+ * Class ListCompare Решение задачи Банковские переводы
+ *
+ * @author Mikhail Kochin (digital-dd@mail.ru)
+ * @since 23.05.2018
+ */
 public class Account {
 
     private TreeMap<User, List<Account>> map = new TreeMap<>();
-
-    public void setValue(double value) {
-        this.value = value;
-    }
-
-    private double value; //money
-    private String requisites; // bank count
+    private double value;
+    private String requisites;
 
     public Account(double value, String requisites) {
         this.value = value;
@@ -32,5 +33,9 @@ public class Account {
 
     public double getValue() {
         return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 }
