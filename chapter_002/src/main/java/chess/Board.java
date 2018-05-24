@@ -64,10 +64,10 @@ public class Board {
         boolean found = false;
         for (Figure figure : figures) {
             found = figure.toString().equals(source.toString());
-            if (found) {
-                break;
-            } else {
+            if (!found) {
                 throw new FigureNotFoundException("Figure not found");
+            } else {
+                break;
             }
         }
         return found;

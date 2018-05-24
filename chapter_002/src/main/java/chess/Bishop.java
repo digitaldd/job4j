@@ -13,13 +13,10 @@ public class Bishop extends Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-        Cell[] cell;
-        if (dest.getX() - source.getX() == dest.getY() - source.getY()) {
-            cell = calculateWay(source, dest);
-        } else {
+        if (dest.getX() - source.getX() != dest.getY() - source.getY()) {
             throw new ImpossibleMoveException("Impossible move (Bishop)");
         }
-        return cell;
+        return calculateWay(source, dest);
     }
 
     /**
