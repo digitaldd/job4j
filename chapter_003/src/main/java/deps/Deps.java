@@ -58,16 +58,13 @@ public class Deps {
         List<String> list2 = new ArrayList<>(list);
         for (int i = 0; i < list.size(); i++) {
             String result = list.get(i);
-            try {
-                result = result.substring(0, result.lastIndexOf("\\"));
-            } catch (StringIndexOutOfBoundsException obe) {
-                i++;
-            }
+            result = result.substring(0, result.lastIndexOf("\\"));
+            i++;
             while (!list2.contains(result)) {
                 list2.add(result);
-                try {
+                if (result.contains("\\")) {
                     result = result.substring(0, result.lastIndexOf("\\"));
-                } catch (StringIndexOutOfBoundsException obe) {
+                } else {
                     i++;
                 }
             }
