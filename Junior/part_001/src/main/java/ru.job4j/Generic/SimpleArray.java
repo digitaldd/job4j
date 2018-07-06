@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * @author Mikhail Kochin (digital-dd@mail.ru)
  * @since 02.07.2018
  */
-public class SimpleArray<T> implements Iterable {
+public class SimpleArray<T> implements Iterable<T> {
     private Object[] arr;
     private int count = 0;
 
@@ -24,17 +24,25 @@ public class SimpleArray<T> implements Iterable {
         this.arr[count++] = model;
     }
 
-    public void set(int index, T model) {
+    public void set(Integer index, T model) {
         arr[index] = model;
     }
 
-    public void delete(int index) {
+    public void delete(Integer index) {
         arr[index] = null;
-        System.arraycopy(arr, index + 1, arr, index, index - 1);
+        System.arraycopy(arr, index + 1, arr, index, arr.length - index - 1);
     }
 
-    T get(int index) {
-        return (T) arr[index];
+    T get(Integer index) {
+        Object object = null;
+        if ((T) arr[index] != null) {
+            object = arr[index];
+        }
+        return (T) object;
+    }
+
+    public int size() {
+        return arr.length;
     }
 
     @Override

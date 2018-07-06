@@ -56,8 +56,9 @@ public class SimpleArrayTest {
     public void whenDeleteElementThenArrayNotContainElement() {
         sa.delete(1);
         assertThat(sa.get(0), is(1000));
-        assertThat(sa.get(1) == null, is(true));
-        assertThat(sa.get(2), is(10));
+        assertThat(sa.get(1), is(10));
+        assertThat(sa.get(2), is(1));
+        assertThat(sa.get(3) == null, is(true));
     }
 
     /**
