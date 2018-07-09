@@ -25,23 +25,17 @@ public class IteratorEven implements Iterator {
             if (even) {
                 break;
             }
+            count++;
         }
         return even;
     }
 
     @Override
     public Object next() {
-        int evenNumb = 0;
-        for (int i = count; i < values.length; i++) {
-            if (values[i] % 2 == 0) {
-                evenNumb = values[i];
-                count = i;
-                break;
-            } else if (i == values.length - 1) {
-                throw new NoSuchElementException();
-            }
+        hasNext();
+        if (count >= values.length) {
+            throw new NoSuchElementException();
         }
-        count++;
-        return evenNumb;
+        return values[count++];
     }
 }
