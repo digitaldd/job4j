@@ -25,23 +25,17 @@ public class IteratorSimpleNumber implements Iterator {
             if (simple) {
                 break;
             }
+            count++;
         }
         return simple;
     }
 
     @Override
     public Object next() {
-        int simpleNumb = 0;
-        for (int i = count; i <= values.length; i++) {
-            if (i > values.length - 1) {
-                throw new NoSuchElementException();
-            } else if (values[i] == 2 || values[i] % 2 != 0 && values[i] != 1) {
-                simpleNumb = values[i];
-                count = i;
-                break;
-            }
+        hasNext();
+        if (count >= values.length) {
+            throw new NoSuchElementException();
         }
-        count++;
-        return simpleNumb;
+        return values[count++];
     }
 }
