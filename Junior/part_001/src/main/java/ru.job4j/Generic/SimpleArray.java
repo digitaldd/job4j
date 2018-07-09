@@ -33,7 +33,7 @@ public class SimpleArray<T> implements Iterable<T> {
         System.arraycopy(arr, index + 1, arr, index, arr.length - index - 1);
     }
 
-    T get(Integer index) {
+    public T get(Integer index) {
         Object object = null;
         if ((T) arr[index] != null) {
             object = arr[index];
