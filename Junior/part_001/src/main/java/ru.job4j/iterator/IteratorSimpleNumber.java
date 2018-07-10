@@ -21,7 +21,7 @@ public class IteratorSimpleNumber implements Iterator {
     public boolean hasNext() {
         boolean simple = false;
         for (int i = count; i < values.length; i++) {
-            simple = values[i] == 2 || values[i] % 2 != 0 && values[i] != 1;
+            simple = values[i] == 2 || values[i] % 2 != 0 && values[i] != 1 && values.length > 1;
             if (simple) {
                 break;
             }

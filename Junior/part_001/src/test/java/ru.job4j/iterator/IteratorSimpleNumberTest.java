@@ -55,4 +55,11 @@ public class IteratorSimpleNumberTest {
         it = new IteratorSimpleNumber(new int[]{4, 6});
         assertThat("should return false, cause there is no any prime number", it.hasNext(), is(false));
     }
+
+    @Test
+    public void should() {
+        it = new IteratorSimpleNumber(new int[]{33});
+        boolean prime = it.hasNext();
+        assertThat(prime, is(false));
+    }
 }
