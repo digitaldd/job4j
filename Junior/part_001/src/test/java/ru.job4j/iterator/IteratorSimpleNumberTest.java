@@ -1,9 +1,9 @@
 package ru.job4j.iterator;
 
-import java.util.NoSuchElementException;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.NoSuchElementException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -57,8 +57,15 @@ public class IteratorSimpleNumberTest {
     }
 
     @Test
-    public void should() {
+    public void shouldFirst() {
         it = new IteratorSimpleNumber(new int[]{33});
+        boolean prime = it.hasNext();
+        assertThat(prime, is(false));
+    }
+
+    @Test
+    public void shouldSecond() {
+        it = new IteratorSimpleNumber(new int[]{33, 33});
         boolean prime = it.hasNext();
         assertThat(prime, is(false));
     }

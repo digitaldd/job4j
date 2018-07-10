@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  */
 public class IteratorSimpleNumber implements Iterator {
     private final int[] values;
-    private int count = 0;
+    private int count = 1;
 
     IteratorSimpleNumber(int[] values) {
         this.values = values;
@@ -21,7 +21,7 @@ public class IteratorSimpleNumber implements Iterator {
     public boolean hasNext() {
         boolean simple = false;
         for (int i = count; i < values.length; i++) {
-            simple = values[i] == 2 || values[i] % 2 != 0 && values[i] != 1 && values.length > 1;
+            simple = checkSimpleNumber(values[i]);
             if (simple) {
                 break;
             }
@@ -37,5 +37,17 @@ public class IteratorSimpleNumber implements Iterator {
             throw new NoSuchElementException();
         }
         return values[count++];
+    }
+
+    public boolean checkSimpleNumber(int num) {
+        boolean result = true;
+        if (num > 2) {
+            for (int i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    result = false;
+                }
+            }
+        }
+        return result;
     }
 }
