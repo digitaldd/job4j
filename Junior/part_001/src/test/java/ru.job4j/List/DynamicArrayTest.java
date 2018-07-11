@@ -19,6 +19,7 @@ import static org.junit.Assert.assertThat;
 public class DynamicArrayTest {
     private DynamicArray<Integer> da = new DynamicArray<>(5);
     private Iterator it = da.iterator();
+    private Iterator itSec = da.iterator();
 
     @Before
     public void beforeTest() {
@@ -81,5 +82,30 @@ public class DynamicArrayTest {
         assertThat(it.hasNext(), is(false));
         assertThat(da.container.length, is(5));
         it.next();
+    }
+
+    /**
+     * test call two iterators
+     */
+    @Test
+    public void whenTwoIterators() {
+        assertThat(it.next(), is(1));
+        assertThat(itSec.next(), is(1));
+    }
+
+    /**
+     * check new array size > 10
+     */
+    @Test
+    public void whenArrSizeMoreTenThenSizeIsTwenty() {
+        da.add(1);
+        da.add(2);
+        da.add(3);
+        da.add(4);
+        da.add(1);
+        da.add(2);
+        da.add(3);
+        da.add(4);
+        assertThat(da.container.length, is(20));
     }
 }
