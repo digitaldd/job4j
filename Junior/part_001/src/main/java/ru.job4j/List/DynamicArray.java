@@ -18,6 +18,7 @@ public class DynamicArray<E> implements Iterable<E> {
 
     public DynamicArray(int size) {
         this.container = new Object[size];
+        this.size = size;
     }
 
     public void add(E value) {
