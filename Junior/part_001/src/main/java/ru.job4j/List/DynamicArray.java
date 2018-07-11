@@ -41,13 +41,13 @@ public class DynamicArray<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        int expectedModCount = modCount;
         return new Iterator<E>() {
             int indexIter;
+            int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
-                return container.length - 1 >= indexIter;
+                return count > indexIter;
             }
 
             @Override

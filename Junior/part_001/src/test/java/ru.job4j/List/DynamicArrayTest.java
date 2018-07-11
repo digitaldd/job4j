@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -76,8 +77,9 @@ public class DynamicArrayTest {
         assertThat(it.next(), is(3));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(4));
-        assertThat(it.hasNext(), is(true));
+        assertThat(it.hasNext(), is(false));
         da.add(5);
+        assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(5));
         assertThat(it.hasNext(), is(false));
         assertThat(da.container.length, is(5));
@@ -107,5 +109,16 @@ public class DynamicArrayTest {
         da.add(3);
         da.add(4);
         assertThat(da.container.length, is(20));
+    }
+
+    /**
+     * test HasNext return false if array is empty
+     */
+    @Test
+    public void whenArrayIsEmptyThenHasNextReturnFalse() {
+        DynamicArray<Integer> da = new DynamicArray<>(200);
+        Iterator<Integer> it = da.iterator();
+        boolean b = it.hasNext();
+        assertFalse(b);
     }
 }
