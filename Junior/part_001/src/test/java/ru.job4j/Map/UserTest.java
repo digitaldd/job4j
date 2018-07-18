@@ -15,9 +15,18 @@ import java.util.Map;
 public class UserTest {
 
     /**
+     * Решение задачи 2. Не перекрывать equals hashCode
      * two element in map ru.job4j.Map.User@6ae40994=1, ru.job4j.Map.User@1a93a7ca=2
      * that possible, because equals - is not overriding
      * difference links and hash codes
+     * <p>
+     * <p>
+     * Решение задачи 3. Переопределить только hashCode
+     * two element in map ru.job4j.Map.User@6ae40994=1, ru.job4j.Map.User@1a93a7ca=2
+     * hash code was overriding, but map contain two elements
+     * equals also need overriding
+     * user hash = 864154285
+     * user2 hash = 864154285
      */
     @Test
     public void whenPrintlnMapThenTwoObject() {

@@ -1,6 +1,7 @@
 package ru.job4j.Map;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Class User Решение задачи 1. Создать модель User
@@ -41,5 +42,10 @@ public class User {
 
     public void setBirthday(Calendar birthday) {
         this.birthday = birthday;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
     }
 }
