@@ -27,8 +27,8 @@ public class UserTest {
      * equals also need overriding
      * user hash = 864154285
      * user2 hash = 864154285
-     *
-     *
+     * <p>
+     * <p>
      * Решение задачи 4. Переопределить только equals
      * two elements in map {ru.job4j.Map.User@4e515669=2, ru.job4j.Map.User@4dcbadb4=1}
      * hashcode - is not overriding
@@ -36,6 +36,13 @@ public class UserTest {
      * if (p.hash == hash && ((k = p.key) == key || (key != null && key.equals(k))))
      * for correct comparision, need hash && equals
      * hash also need overriding
+     * <p>
+     * <p>
+     * Решение задачи 5. Перекрывать и equals и hashCode
+     * one element in map {ru.job4j.Map.User@3381f2ad=2}
+     * hashcode and equals - was overriding
+     * user was overwritten user2
+     * map correct
      */
     @Test
     public void whenPrintlnMapThenTwoObject() {
