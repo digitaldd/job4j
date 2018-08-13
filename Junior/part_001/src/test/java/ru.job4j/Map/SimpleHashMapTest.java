@@ -51,7 +51,7 @@ public class SimpleHashMapTest {
      */
     @Test
     public void whenMapResize14() {
-        assertThat(hashMap.getSize(), is(14));
+        assertThat(hashMap.getSize(), is(10));
     }
 
     /**
@@ -77,7 +77,7 @@ public class SimpleHashMapTest {
         assertThat(hashMap.delete(7), is(true));
         assertThat(hashMap.delete(15), is(false));
         assertThat(hashMap.getCount(), is(5));
-        assertThat(hashMap.getSize(), is(14));
+        assertThat(hashMap.getSize(), is(10));
     }
 
     /**
@@ -91,6 +91,8 @@ public class SimpleHashMapTest {
         assertThat(it.next().value, is("null"));
         assertThat(itSec.hasNext(), is(true));
         assertThat(itSec.next().value, is("null"));
+        assertThat(itSec.hasNext(), is(true));
+        assertThat(itSec.next().value, is("one"));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next().value, is("one"));
         assertThat(it.hasNext(), is(true));
@@ -98,16 +100,12 @@ public class SimpleHashMapTest {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next().value, is("three"));
         assertThat(it.hasNext(), is(true));
-        hashMap.insert(5, "43");
         assertThat(it.hasNext(), is(true));
         assertThat(it.next().value, is("four"));
         assertThat(it.hasNext(), is(true));
-        assertThat(itSec.hasNext(), is(true));
-        assertThat(itSec.next().value, is("one"));
-        assertThat(hashMap.delete(5), is(true));
-        assertThat(hashMap.delete(6), is(true));
-        assertThat(hashMap.delete(7), is(true));
-        assertThat(hashMap.getCount(), is(5));
+        it.next();
+        it.next();
+        it.next();
         it.next();
     }
 
@@ -124,7 +122,7 @@ public class SimpleHashMapTest {
         hashMap.insert(12, "55");
         hashMap.insert(13, "55");
         hashMap.insert(14, "55");
-        assertThat(hashMap.getSize(), is(26));
+        assertThat(hashMap.getSize(), is(20));
         it.next();
     }
 }

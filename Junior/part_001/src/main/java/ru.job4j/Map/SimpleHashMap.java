@@ -13,24 +13,26 @@ import java.util.NoSuchElementException;
 public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Bucket> {
 
     /**
+     * load factor
+     */
+    private final float LOAD_FACTOR = 0.75f;
+    /**
      * storage
      */
     private Bucket<K, V>[] buckets;
-
     /**
      * modification count
      */
     private int modCount;
-
     /**
      * beginning size
      */
     private int size = 5;
-
     /**
      * quantity elements
      */
     private int count;
+
 
     public SimpleHashMap() {
         buckets = new Bucket[size];
@@ -41,13 +43,14 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Bucket> {
     }
 
     public boolean insert(K key, V value) {
-        if (count == size - 1) {
+        if (count / buckets.length >= LOAD_FACTOR) {
             buckets = resize(buckets);
         }
         boolean ins = false;
         if (check(key) && buckets[hash(key)] == null) {
             buckets[hash(key)] = new Bucket<>(key, value);
             ins = true;
+            modCount++;
             count++;
         }
         return ins;
@@ -71,6 +74,7 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Bucket> {
             buckets[hash(key)].value = null;
             del = true;
             count--;
+            modCount++;
         }
         return del;
     }
@@ -84,18 +88,18 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Bucket> {
     }
 
     public Bucket[] resize(Bucket[] oldBuckets) {
-        modCount++;
-        size = count * 2;
+        size = buckets.length << 1;
         Bucket[] newBuckets = new Bucket[size];
         System.arraycopy(oldBuckets, 0, newBuckets, 0, oldBuckets.length);
+        modCount++;
         return newBuckets;
     }
 
     @Override
     public Iterator<Bucket> iterator() {
         return new Iterator<Bucket>() {
-            int indexIter;
-            int expectedModCount = modCount;
+            private int indexIter;
+            private int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
