@@ -21,17 +21,13 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     public boolean add(E parent, E child) {
         boolean add = false;
         Optional<Node<E>> rt = Optional.ofNullable(root);
-        Optional<Node<E>> prnt = Optional.empty();
         if (!rt.isPresent()) {
             root = new Node<>(parent);
             root.add(new Node<>(child));
             add = true;
             modCount++;
-        } else {
-            prnt = findBy(parent);
-        }
-        if (rt.isPresent() && prnt.isPresent() && !prnt.get().eqValue(child)) {
-            prnt.get().add(new Node<>(child));
+        } else if (findBy(parent).isPresent() && !findBy(child).isPresent()) {
+            findBy(parent).get().add(new Node<>(child));
             add = true;
             modCount++;
         }
