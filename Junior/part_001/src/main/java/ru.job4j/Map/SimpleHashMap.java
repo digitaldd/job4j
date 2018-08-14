@@ -39,7 +39,7 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Bucket> {
     }
 
     private int hash(K key) {
-        return key == null ? 0 : key.hashCode() ^ key.hashCode() >>> buckets.length;
+        return key == null ? 0 : key.hashCode() ^ key.hashCode() >>> size;
     }
 
     public boolean insert(K key, V value) {
@@ -68,7 +68,7 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Bucket> {
         return count;
     }
 
-    boolean delete(K key) {
+    public boolean delete(K key) {
         boolean del = false;
         if (check(key) && buckets[hash(key)] != null) {
             buckets[hash(key)].value = null;
@@ -87,10 +87,12 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Bucket> {
         return inSize;
     }
 
-    public Bucket[] resize(Bucket[] oldBuckets) {
+    private Bucket[] resize(Bucket[] oldBuckets) {
         size = buckets.length << 1;
         Bucket[] newBuckets = new Bucket[size];
-        System.arraycopy(oldBuckets, 0, newBuckets, 0, oldBuckets.length);
+        for (Bucket oldBucket : oldBuckets) {
+            newBuckets[hash((K) oldBucket.key)] = new Bucket<>(oldBucket.key, oldBucket.value);
+        }
         modCount++;
         return newBuckets;
     }
