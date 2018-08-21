@@ -1,10 +1,10 @@
 package ru.job4j.Bank;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Calendar;
 
 /**
  * Class Bank Решение задачи: Пик посетителей в банке
@@ -17,18 +17,25 @@ public class Bank {
     public List<Info> max(List<Visit> visits) {
         List<Info> periods = new ArrayList<>();
         List<Info> allPeriods = new ArrayList<>();
-        Map<Integer, List<Info>> map = new HashMap<>();
-        long count = 1;
-        for (Visit visit : visits) {
-            for (Visit visit1 : visits) {
-                if (!(visit.in >= visit1.out && visit.out >= visit1.in)) {
-                    allPeriods.add(new Info(count++, visit1.in, visit1.out));
+        Map<Long, List<Info>> map = new HashMap<>();
+        int maxSize = 0;
+        long hash = 0;
+        for (int i = 0; i < visits.size(); i++) {
+            long count = 1;
+            for (int j = i; j < visits.size(); j++) {
+                if (visits.get(i).out >= visits.get(j).in) {
+                    allPeriods.add(new Info(count, visits.get(j).in, visits.get(j).out));
+                    count++;
                 }
             }
-            map.put(allPeriods.size(), new ArrayList<>(allPeriods));
+            if (allPeriods.size() >= maxSize) {
+                maxSize = allPeriods.size();
+                hash = visits.get(i).in;
+                map.put(visits.get(i).in, new ArrayList<>(allPeriods));
+            }
             allPeriods.clear();
         }
-        allPeriods = map.get(map.keySet().iterator().next());
+        allPeriods = map.get(hash);
         for (int k = 1, m = 0; k < allPeriods.size(); k++) {
             long start = Math.max(allPeriods.get(m).start, allPeriods.get(k).start);
             long finish = Math.min(allPeriods.get(m).end, allPeriods.get(k).end);

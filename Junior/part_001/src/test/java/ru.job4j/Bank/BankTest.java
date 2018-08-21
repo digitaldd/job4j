@@ -111,8 +111,44 @@ public class BankTest {
                 new Bank.Visit(time(14, 10), time(14, 30)),
                 new Bank.Visit(time(14, 10), time(14, 19)),
                 new Bank.Visit(time(14, 10), time(14, 30)),
-                new Bank.Visit(time(14, 10), time(14, 30)));
+                new Bank.Visit(time(14, 10), time(14, 31)));
         assertThat(new Bank().max(visits), is(Arrays.asList(new Bank.Info(4, time(14, 10), time(14, 19)))));
+    }
+
+    /**
+     * test cross 3 elements in the middle
+     */
+    @Test
+    public void whenCrossMaxThreeVisitsInTheMiddle() {
+        List<Bank.Visit> visits = Arrays.asList(new Bank.Visit(time(8, 10), time(8, 50)),
+                new Bank.Visit(time(8, 30), time(9, 15)),
+                new Bank.Visit(time(8, 30), time(8, 45)),
+                new Bank.Visit(time(14, 10), time(14, 30)),
+                new Bank.Visit(time(14, 10), time(14, 45)),
+                new Bank.Visit(time(15, 10), time(15, 38)),
+                new Bank.Visit(time(15, 14), time(15, 48)),
+                new Bank.Visit(time(15, 20), time(15, 35)),
+                new Bank.Visit(time(16, 14), time(16, 48)),
+                new Bank.Visit(time(16, 14), time(16, 48)),
+                new Bank.Visit(time(17, 14), time(17, 48)));
+        assertThat(new Bank().max(visits), is(Arrays.asList(new Bank.Info(3, time(15, 20), time(15, 35)))));
+    }
+
+    /**
+     * test cross 3 elements in the begin with duplicates
+     */
+    @Test
+    public void whenCrossMaxThreeVisitsInTheBeginWithDuplicates() {
+        List<Bank.Visit> visits = Arrays.asList(new Bank.Visit(time(8, 30), time(8, 45)),
+                new Bank.Visit(time(8, 30), time(8, 45)),
+                new Bank.Visit(time(8, 30), time(8, 45)),
+                new Bank.Visit(time(14, 10), time(14, 30)),
+                new Bank.Visit(time(15, 10), time(15, 38)),
+                new Bank.Visit(time(15, 20), time(15, 35)),
+                new Bank.Visit(time(16, 14), time(16, 48)),
+                new Bank.Visit(time(16, 14), time(16, 48)),
+                new Bank.Visit(time(17, 14), time(17, 48)));
+        assertThat(new Bank().max(visits), is(Arrays.asList(new Bank.Info(3, time(8, 30), time(8, 45)))));
     }
 
     private long time(int hour, int minute) {
