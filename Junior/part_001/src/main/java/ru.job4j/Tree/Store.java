@@ -1,9 +1,10 @@
 package ru.job4j.Tree;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Class Store Решение задачи: Статистику по коллекции
@@ -13,23 +14,24 @@ import java.util.Set;
  */
 public class Store<S> {
     S infoDiff(List<User> previous, List<User> current) {
-        Set<User> cur = new HashSet<>(current);
-        Set<User> prev = new HashSet<>(previous);
-        cur.removeAll(prev);
-        prev.removeAll(current);
-        int curSize = cur.size();
-        int prevSize = prev.size();
-        int diff = 0;
-        for (User aCurrent : cur) {
-            for (User aPrevious : prev) {
-                if (aCurrent.id == aPrevious.id && !aCurrent.name.equals(aPrevious.name)) {
-                    diff++;
-                    curSize--;
-                    prevSize--;
-                }
+        Map<Integer, String> map = new HashMap<>();
+        AtomicInteger diff = new AtomicInteger();
+        AtomicInteger add = new AtomicInteger();
+        AtomicInteger rem = new AtomicInteger();
+        previous.forEach(user -> {
+            if (!current.contains(user)) {
+                rem.incrementAndGet();
             }
-        }
-        return (S) ("Diff = " + diff + " Remove = " + prevSize + " Add = " + curSize);
+            map.put(user.id, user.name);
+        });
+        current.forEach(user -> {
+            if (map.containsKey(user.id) && !map.get(user.id).equals(user.name)) {
+                diff.incrementAndGet();
+            } else if (!map.containsKey(user.id)) {
+                add.incrementAndGet();
+            }
+        });
+        return (S) ("Diff = " + diff + " Remove = " + (rem.get() - diff.get()) + " Add = " + add);
     }
 
     static class User {
