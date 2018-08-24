@@ -3,7 +3,7 @@ package ru.job4j.Threads;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Class RectangleMove Решение задачи 1. Пин-понг
+ * Class RectangleMove Решение задачи 3. Реализовать механизм программной остановки потока
  *
  * @author Mikhail Kochin (digital-dd@mail.ru)
  * @since 23.08.2018
@@ -18,7 +18,7 @@ public class RectangleMove implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             if (rect.getX() == 290 || rect.getX() == 0) {
                 moveHor = 0 - moveHor;
             }
