@@ -18,7 +18,7 @@ public class Count {
         this.value++;
     }
 
-    public int get() {
+    public synchronized int get() {
         return this.value;
     }
 }
