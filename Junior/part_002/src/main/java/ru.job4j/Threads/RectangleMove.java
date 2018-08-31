@@ -10,7 +10,6 @@ import javafx.scene.shape.Rectangle;
  */
 public class RectangleMove implements Runnable {
     private final Rectangle rect;
-    private int moveHor = 5;
 
     public RectangleMove(Rectangle rect) {
         this.rect = rect;
@@ -18,6 +17,7 @@ public class RectangleMove implements Runnable {
 
     @Override
     public void run() {
+        int moveHor = 5;
         while (!Thread.currentThread().isInterrupted()) {
             if (rect.getX() == 290 || rect.getX() == 0) {
                 moveHor = 0 - moveHor;
