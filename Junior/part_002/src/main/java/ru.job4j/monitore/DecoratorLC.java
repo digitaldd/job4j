@@ -15,7 +15,7 @@ import java.util.Iterator;
 @ThreadSafe
 public class DecoratorLC<E> implements Iterable {
     @GuardedBy("this")
-    private LinkedContainer<E> lc;
+    private final LinkedContainer<E> lc;
 
     public DecoratorLC(LinkedContainer<E> lc) {
         this.lc = lc;

@@ -15,7 +15,7 @@ import java.util.Iterator;
 @ThreadSafe
 public class DecoratorDA<E> implements Iterable {
     @GuardedBy("this")
-    private DynamicArray<E> da;
+    private final DynamicArray<E> da;
 
     public DecoratorDA(DynamicArray<E> da) {
         this.da = da;
