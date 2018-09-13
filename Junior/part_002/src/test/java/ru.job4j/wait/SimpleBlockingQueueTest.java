@@ -41,7 +41,6 @@ public class SimpleBlockingQueueTest {
                     e.printStackTrace();
                 }
             }
-
         });
     }
 
